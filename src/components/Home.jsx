@@ -14,10 +14,6 @@ export default function Home () {
         </div>
       </div>
 
-      <a href="#get-started" className="bg-white text-purple-900 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-purple-100 transition">
-        Get Started
-      </a>
-
       <img src="/Myself.png" alt="Dhanu Pandhowo" className="absolute z-20 w-lg overflow-hidden bottom-0"/>
     </section>
   )
