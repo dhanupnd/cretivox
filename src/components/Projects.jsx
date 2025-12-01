@@ -25,7 +25,7 @@ export default function Projects () {
         />
         <div className="flex gap-2">
           <div className="w-3/4 h-auto border-2 rounded-lg border-white">
-            <img src="/public/summitz-homepage.png" alt="Project 1" className="w-full h-full object-cover rounded-lg mb-5"/>
+            <img src="/summitz-homepage.png" alt="Project 1" className="w-full h-full object-cover rounded-lg mb-5"/>
             <a href="https://summitz-app.vercel.app" target="_blank" 
               className="px-5 py-2 bg-white rounded-full text-black hover:bg-gray-700 hover:text-white hover:shadow-lg transition-all" 
               style={{ fontFamily:"'Poppins', sans-serif" }}
@@ -34,7 +34,7 @@ export default function Projects () {
             </a>
           </div>
           <div className="w-3/4 h-auto border-2 rounded-lg border-white">
-            <img src="/public/ticktime-homepage.png" alt="Project 1" className="w-full h-full object-cover rounded-lg mb-5"/>
+            <img src="/ticktime-homepage.png" alt="Project 1" className="w-full h-full object-cover rounded-lg mb-5"/>
             <a href="https://tick-time-eight.vercel.app" target="_blank" 
               className="px-5 py-2 bg-white rounded-full text-black hover:bg-gray-700 hover:text-white hover:shadow-lg transition-all" 
               style={{ fontFamily:"'Poppins', sans-serif" }}

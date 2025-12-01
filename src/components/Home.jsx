@@ -18,7 +18,7 @@ export default function Home () {
         Get Started
       </a>
 
-      <img src="/public/Myself.png" alt="Dhanu Pandhowo" className="absolute z-20 w-lg overflow-hidden bottom-0"/>
+      <img src="/Myself.png" alt="Dhanu Pandhowo" className="absolute z-20 w-lg overflow-hidden bottom-0"/>
     </section>
   )
 }
