@@ -23,7 +23,9 @@ function FadeIn({ children, delay = 0.2 }) {
       animate={controls}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
     >
+
       {children}
+    
     </motion.div>
   );
 }

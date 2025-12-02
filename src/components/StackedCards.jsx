@@ -1,69 +1,92 @@
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+// StackedCards.jsx
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function StackedCards({ direction = "vertical" }) {
-  const sectionRef = useRef(null);
-  const wrapperRef = useRef(null);
+export default function StackedCards() {
+  const containerRef = useRef(null);
+  const tlRef = useRef(null);
 
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const items = wrapperRef.current.querySelectorAll(".item");
+  const cards = [
+    { id: 1, image: "/summitz-homepage.png" },
+    { id: 2, image: "/ticktime-homepage.png" },
+    { id: 3, image: "/your-image-here.png" },
+  ];
 
-    // Set posisi awal
-    items.forEach((item, index) => {
-      if (index !== 0) {
-        direction === "horizontal"
-          ? gsap.set(item, { xPercent: 100 })
-          : gsap.set(item, { yPercent: 100 });
-      }
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const wrapper = container.querySelector(".stacked-cards .wrapper");
+    const items = wrapper.querySelectorAll(".stacked-cards .item");
+
+    // set initial positions
+    items.forEach((item, i) => {
+      if (i !== 0) gsap.set(item, { yPercent: 100 }); // vertical stack
     });
+
+    // kill existing timeline if any
+    if (tlRef.current) {
+      tlRef.current.kill();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      tlRef.current = null;
+    }
 
     const tl = gsap.timeline({
+      defaults: { ease: "none" },
       scrollTrigger: {
-        trigger: section,
+        trigger: container,
         pin: true,
         start: "top top",
-        end: `+=${items.length * 100}%`,
-        scrub: 1,
+        end: () => `+=${items.length * 100}%`, // setiap item setara 100% viewport
+        scrub: 0.8,
+        invalidateOnRefresh: true,
+        markers: true, // aktifkan untuk debugging
       },
-      defaults: { ease: "none" },
     });
 
-    items.forEach((item, index) => {
-      tl.to(item, { scale: 0.9, borderRadius: "12px" });
+    items.forEach((item, i) => {
+      // sedikit scale sebelum reveal
+      tl.to(item, { scale: 0.96, borderRadius: "12px", duration: 0.6 });
 
-      if (items[index + 1]) {
-        direction === "horizontal"
-          ? tl.to(items[index + 1], { xPercent: 0 }, "<")
-          : tl.to(items[index + 1], { yPercent: 0 }, "<");
+      // animate next item into view
+      const next = items[i + 1];
+      if (next) {
+        tl.to(next, { yPercent: 0, duration: 0.8 }, "<");
       }
     });
-  }, [direction]);
+
+    tlRef.current = tl;
+
+    // cleanup
+    return () => {
+      if (tlRef.current) tlRef.current.kill();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      tlRef.current = null;
+    };
+  }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="scroll-section w-full h-screen overflow-hidden"
+    <div
+      ref={containerRef}
+      className="stacked-cards scroll-section vertical-section section w-full max-w-7xl mx-auto"
     >
-      <div ref={wrapperRef} className="wrapper w-full h-full relative">
-        {/* CARD 1 */}
-        <div className="item absolute inset-0 bg-red-500 flex items-center justify-center text-5xl font-bold">
-          <Home />
-        </div>
-
-        {/* CARD 2 */}
-        <div className="item absolute inset-0 bg-blue-500 flex items-center justify-center text-5xl font-bold">
-          <About />
-        </div>
-
-        {/* CARD 3 */}
-        <div className="item absolute inset-0 bg-green-500 flex items-center justify-center text-5xl font-bold">
-          <Skills />
+      <div className="wrapper">
+        <div className="list">
+          {cards.map((card) => (
+            <div className="item" key={card.id}>
+              <img
+                src={card.image}
+                alt={`project-${card.id}`}
+                className="item_media h-screen object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

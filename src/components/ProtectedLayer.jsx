@@ -1,29 +1,18 @@
-import { useContext, useState } from 'react';
-import { AuthContext } from '../context/AuthContext.jsx';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
 
-export default function ProtectedLayer() {
-    const { token } = useContext(AuthContext);
+const ProtectedLayer = ({ children }) => {
+  const { isAuthenticated, loading } = useAuth();
 
-    useEffect(() => {
-        if (!token) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-    }, [token]);
-
-    if(token) return null;
-
-    return(
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="text-white text-xl">
-        Silakan login untuk melanjutkan.
-        <button
-          onClick={() => (window.location.href = "/login")}
-          className="block mt-4 px-4 py-2 bg-blue-600 rounded">
-          Login Sekarang
-        </button>
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
       </div>
-    </div>
-    )
-}
+    );
+  }
+
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+};
+
+export default ProtectedLayer;

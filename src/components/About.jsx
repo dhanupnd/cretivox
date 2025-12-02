@@ -8,6 +8,7 @@ const handleAnimationComplete = () => {
 export default function About () {
   return (
     <section id='about' className="flex flex-col justify-center items-center text-center h-screen gap-5 text-white px-4">
+        
         <SplitText
           text="About me"
           style={{ fontFamily: "'Momo Signature', cursive" }}
@@ -23,6 +24,7 @@ export default function About () {
           textAlign="center"
           onLetterAnimationComplete={handleAnimationComplete}
         />
+        
         <TextFollow />
     </section>
   )

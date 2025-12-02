@@ -23,6 +23,7 @@ export default function Skills () {
 
     return(
         <section id='skills' className="flex flex-col justify-center items-center text-center h-screen text-white px-4">
+            
             <SplitText
                 text="What can i do?"
                 style={{ fontFamily: "'Momo Signature', cursive" }}
@@ -38,6 +39,7 @@ export default function Skills () {
                 textAlign="center"
                 onLetterAnimationComplete={handleAnimationComplete}
             />
+
             <FadeIn delay={0.3}>
                 <p className="text-lg md:text-2xl mb-8 max-w-lg text-justify" style={{ fontFamily: "'Poppins', sans-serif" }}>
                     I do web development using modern technologies to create responsive and user-friendly websites and applications.
@@ -49,6 +51,7 @@ export default function Skills () {
             >
                 Tech and tools that i usually use :
             </h1>
+
             <LogoLoop
                 logos={techLogos}
                 speed={120}

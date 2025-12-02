@@ -89,7 +89,6 @@ export default function Contact () {
                 </div>
               </a>
             </FadeIn>
-            
           </div>
         </div>
 

@@ -8,6 +8,7 @@ export default function Projects () {
   
   return (
     <section id='projects' className="flex flex-col justify-center items-center text-center h-screen text-white px-4">
+        
         <SplitText
           text="Recent Projects"
           style={{ fontFamily: "'Momo Signature', cursive" }}
@@ -23,7 +24,9 @@ export default function Projects () {
           textAlign="center"
           onLetterAnimationComplete={handleAnimationComplete}
         />
+
         <div className="grid grid-cols-4 grid-rows-1 gap-4">
+          
           <div className="col-start-2 w-full h-auto border rounded-lg border-white">
             <img src="/summitz-homepage.png" alt="Project 1" className="w-full h-full object-cover rounded-lg mb-5"/>
             <a href="https://summitz-app.vercel.app" target="_blank" 
@@ -45,6 +48,7 @@ export default function Projects () {
               View site
             </a>
           </div>
+
         </div>
         
     </section>

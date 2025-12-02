@@ -13,6 +13,7 @@ export default function Home () {
   return (
     <section id="home" className="flex flex-col justify-center items-center text-center h-screen text-white">
       <div className="grid grid-cols-2 grid-rows-2">
+        
         <div className="col-span-1 flex items-end">
           <FadeIn delay={0.1}>
             <h1 className="text-2xl text-start" style={{ fontFamily: "'Momo Signature', cursive"}}>
@@ -20,6 +21,7 @@ export default function Home () {
             </h1>
           </FadeIn>
         </div>
+
         <div className="col-span-2 flex items-start">
           <FadeIn delay={0.3}>
             <p className="text-8xl text-start" style={{ fontFamily: "'Bebas Neue', cursive" }}>
