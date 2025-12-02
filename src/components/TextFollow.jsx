@@ -10,7 +10,7 @@ export default function TextFollow() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".section__title--1 span",
-        scrub: true,
+        scrub: 1,
         start: "top bottom",
         end: "bottom 50%",
       },

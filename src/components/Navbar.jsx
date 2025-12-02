@@ -1,6 +1,6 @@
 export default function Navbar() {
   return (
-    <nav className="navbar flex fixed w-full justify-between items-center p-4 z-30 bg-transparent text-white">
+    <nav className="navbar flex fixed w-full justify-between items-center p-4 z-30 bg-transparent backdrop-filter backdrop-blur text-white">
       <a href="#home">
         <img src="/public/cretivoxLogo.webp" alt="" className="w-10 rounded-lg"/>
       </a>

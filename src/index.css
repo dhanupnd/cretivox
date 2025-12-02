@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
 
 .momo-signature-regular {
@@ -35,6 +34,15 @@ a {
 
 html {
   scroll-behavior: smooth;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 1s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
 }
 
 ::-webkit-scrollbar {
